@@ -15,7 +15,7 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.json());
 // Allow requests from a specific origin
 const corsOptions = {
-  origin: 'https://duediligencebot.com', // Change to your frontend domain
+  origin: '*', // Change to your frontend domain
 };
 
 app.use(cors(corsOptions));
