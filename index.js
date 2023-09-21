@@ -13,7 +13,12 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+// Allow requests from a specific origin
+const corsOptions = {
+  origin: 'https://duediligencebot.com', // Change to your frontend domain
+};
+
+app.use(cors(corsOptions));
 
 // Define routes
 const authRoutes = require('./routes/auth');
