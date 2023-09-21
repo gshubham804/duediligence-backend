@@ -14,12 +14,15 @@ mongoose.connection.once('open', () => {
 
 app.use(bodyParser.json());
 // Allow requests from a specific origin
-const corsOptions = {
-  origin: '*', // Change to your frontend domain
+const cors = require('cors');    
+const corsOpts = {
+    origin: '*',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Type']
 };
-
-app.use(cors(corsOptions));
-
+app.use(cors(corsOpts));
 // Define routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
