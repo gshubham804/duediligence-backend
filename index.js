@@ -13,7 +13,13 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Allow all origins (insecure, for development)
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 
 // Define routes
 const authRoutes = require('./routes/auth');
