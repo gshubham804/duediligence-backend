@@ -12,9 +12,9 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+
 app.use(bodyParser.json());
 // Allow requests from a specific origin
-const cors = require('cors');    
 const corsOpts = {
     origin: '*',
     credentials: true,
@@ -23,6 +23,7 @@ const corsOpts = {
     exposedHeaders: ['Content-Type']
 };
 app.use(cors(corsOpts));
+
 // Define routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
