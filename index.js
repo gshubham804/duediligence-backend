@@ -14,9 +14,9 @@ mongoose.connection.once('open', () => {
 
 app.use(bodyParser.json());
 // Allow requests from a specific origin
-app.options('*', cors({
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Add the allowed methods here
-}));
+app.options('/*', (_, res) => {
+  res.sendStatus(200);
+});
 
 // CORS configuration with additional headers
 const corsOptions = {
