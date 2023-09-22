@@ -12,14 +12,19 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-
 app.use(bodyParser.json());
 // Allow requests from a specific origin
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.options('*', cors({
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Add the allowed methods here
+}));
+
+// CORS configuration with additional headers
+const corsOptions = {
+  origin: '*', // Update to match the domain you will make the request from
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+};
+
+app.use(cors(corsOptions));
 
 // Define routes
 const authRoutes = require('./routes/auth');
