@@ -14,16 +14,14 @@ mongoose.connection.once('open', () => {
 
 app.use(bodyParser.json());
 // Allow requests from a specific origin
-app.options('/*', (_, res) => {
-  res.sendStatus(200);
-});
-
-// CORS configuration with additional headers
 const corsOptions = {
-  origin: '*', // Update to match the domain you will make the request from
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  origin: 'https://ddbotai.netlify.app', // Replace with your Netlify frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies and authorization headers
+  optionsSuccessStatus: 204, // No content response for preflight requests
 };
 
+// Use CORS middleware with the specified options
 app.use(cors(corsOptions));
 
 // Define routes
