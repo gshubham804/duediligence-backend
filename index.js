@@ -15,7 +15,7 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.json());
 // Allow requests from a specific origin
 const corsOptions = {
-  origin: 'https://ddbotai.netlify.app', // Replace with your Netlify frontend URL
+  origin: 'https://duediligencebot.com', // Replace with your Netlify frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies and authorization headers
   optionsSuccessStatus: 204, // No content response for preflight requests
